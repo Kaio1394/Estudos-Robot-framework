@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.1 on win32)" generated="20230113 11:20:44.942" rpa="false" schemaversion="3">
+<suite id="s1" name="Amazon Testes" source="C:\Users\Vericoders\Documents\Curso-udemy\amazon_testes.robot">
+<test id="s1-t1" name=" Caso de Teste 02 - Pesquisar um produto" line="20">
+<kw name="Abrir o navegador" library="amazon_resource" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>browser=chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230113 11:20:45.398" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<status status="PASS" starttime="20230113 11:20:45.398" endtime="20230113 11:20:46.638"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230113 11:20:46.638" endtime="20230113 11:20:46.764"/>
+</kw>
+<status status="PASS" starttime="20230113 11:20:45.397" endtime="20230113 11:20:46.765"/>
+</kw>
+<kw name="Acessar a home page do site &quot;https://www.amazon.com.br/&quot;" library="amazon_resource" sourcename="Acessar a home page do site &quot;${URL}&quot;">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>url=${URl}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20230113 11:20:46.768" level="INFO">Opening url 'https://www.amazon.com.br/'</msg>
+<status status="PASS" starttime="20230113 11:20:46.767" endtime="20230113 11:20:52.114"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${MENU_ELETRONICOS}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20230113 11:20:52.115" endtime="20230113 11:20:52.167"/>
+</kw>
+<status status="PASS" starttime="20230113 11:20:46.766" endtime="20230113 11:20:52.167"/>
+</kw>
+<kw name="Verificar se o título da página fica &quot;Amazon.com.br | Tudo pra você, de A a Z.&quot;" library="amazon_resource" sourcename="Verificar se o título da página fica &quot;${TITULO_ABA}&quot;">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${TITULO_ABA}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20230113 11:20:52.177" level="INFO">Page title is 'Amazon.com.br | Tudo pra você, de A a Z.'.</msg>
+<status status="PASS" starttime="20230113 11:20:52.168" endtime="20230113 11:20:52.177"/>
+</kw>
+<status status="PASS" starttime="20230113 11:20:52.168" endtime="20230113 11:20:52.178"/>
+</kw>
+<kw name="Preencher o campo &quot;pesquisa&quot; com o valor &quot;Xbox Series S&quot;" library="amazon_resource" sourcename="Preencher o campo &quot;${CAMPO}&quot; com o valor &quot;${VALOR}&quot;">
+<if>
+<branch type="IF" condition="'${campo}' == 'pesquisa'">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>locator=${edit_pesquisa}</arg>
+<arg>text=${valor}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230113 11:20:52.180" level="INFO">Typing text 'Xbox Series S' into text field 'twotabsearchtextbox'.</msg>
+<status status="PASS" starttime="20230113 11:20:52.180" endtime="20230113 11:20:52.405"/>
+</kw>
+<status status="PASS" starttime="20230113 11:20:52.180" endtime="20230113 11:20:52.405"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fatal Error" library="BuiltIn">
+<arg>message=elemento não encontrado</arg>
+<doc>Stops the whole test execution.</doc>
+<status status="NOT RUN" starttime="20230113 11:20:52.406" endtime="20230113 11:20:52.406"/>
+</kw>
+<status status="NOT RUN" starttime="20230113 11:20:52.405" endtime="20230113 11:20:52.406"/>
+</branch>
+<status status="PASS" starttime="20230113 11:20:52.180" endtime="20230113 11:20:52.406"/>
+</if>
+<status status="PASS" starttime="20230113 11:20:52.179" endtime="20230113 11:20:52.406"/>
+</kw>
+<kw name="Clicar no botão de pesquisa" library="amazon_resource">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>locator=${SUBMIT}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230113 11:20:52.408" level="INFO">Clicking element '//input[contains(@type,'submit')]'.</msg>
+<status status="PASS" starttime="20230113 11:20:52.407" endtime="20230113 11:20:52.582"/>
+</kw>
+<status status="PASS" starttime="20230113 11:20:52.407" endtime="20230113 11:20:52.582"/>
+</kw>
+<kw name="Verificar de &quot;1&quot; até o &quot;10&quot; resultados da pesquisa se está sendo listando o produto &quot;&quot;" library="amazon_resource" sourcename="Verificar de &quot;${INIT}&quot; até o &quot;${END}&quot; resultados da pesquisa se está sendo listando o produto &quot;${PRODUTO}&quot;">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=//div[@data-cel-widget="search_result_1"]</arg>
+<arg>timeout=20s</arg>
+<arg>error=Elemento não encontrado dentro de</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20230113 11:20:52.584" endtime="20230113 11:20:54.698"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>${INIT}</value>
+<value>${END}</value>
+<value>1</value>
+<iter>
+<var name="${i}">1</var>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>locator=//div[@data-cel-widget="search_result_${i}"]//*[contains(.,'${PRODUTO}')]</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20230113 11:20:54.734" level="INFO">Element '//div[@data-cel-widget="search_result_1"]//*[contains(.,'')]' is displayed.</msg>
+<status status="PASS" starttime="20230113 11:20:54.699" endtime="20230113 11:20:54.734"/>
+</kw>
+<kw name="Capture o elemento com o valor do locator &quot;//div[@data-cel-widget=&quot;search_result_${i}&quot;]//*[contains(.,'${PRODUTO}')]&quot;" library="amazon_resource" sourcename="Capture o elemento com o valor do locator &quot;${LOCATOR}&quot;">
+<kw name="Capture Element Screenshot" library="SeleniumLibrary">
+<arg>locator=${LOCATOR}</arg>
+<doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
+<msg timestamp="20230113 11:20:54.941" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-element-screenshot-6.png"&gt;&lt;img src="selenium-element-screenshot-6.png" width="400px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230113 11:20:54.735" endtime="20230113 11:20:54.941"/>
+</kw>
+<status status="PASS" starttime="20230113 11:20:54.735" endtime="20230113 11:20:54.941"/>
+</kw>
+<if>
+<branch type="IF" condition="${j} == 2">
+<kw name="Exit For Loop" library="BuiltIn">
+<doc>Stops executing the enclosing FOR loop.</doc>
+<status status="NOT RUN" starttime="20230113 11:20:54.942" endtime="20230113 11:20:54.942"/>
+</kw>
+<status status="NOT RUN" starttime="20230113 11:20:54.942" endtime="20230113 11:20:54.942"/>
+</branch>
+<branch type="ELSE">
+<kw name="Evaluate" library="BuiltIn">
+<var>${j}</var>
+<arg>${j}+1</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230113 11:20:54.943" level="INFO">${j} = 2</msg>
+<status status="PASS" starttime="20230113 11:20:54.942" endtime="20230113 11:20:54.943"/>
+</kw>
+<status status="PASS" starttime="20230113 11:20:54.942" endtime="20230113 11:20:54.943"/>
+</branch>
+<status status="PASS" starttime="20230113 11:20:54.941" endtime="20230113 11:20:54.943"/>
+</if>
+<status status="PASS" starttime="20230113 11:20:54.699" endtime="20230113 11:20:54.943"/>
+</iter>
+<iter>
+<var name="${i}">2</var>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>locator=//div[@data-cel-widget="search_result_${i}"]//*[contains(.,'${PRODUTO}')]</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20230113 11:20:55.008" level="INFO">Element '//div[@data-cel-widget="search_result_2"]//*[contains(.,'')]' is displayed.</msg>
+<status status="PASS" starttime="20230113 11:20:54.944" endtime="20230113 11:20:55.008"/>
+</kw>
+<kw name="Capture o elemento com o valor do locator &quot;//div[@data-cel-widget=&quot;search_result_${i}&quot;]//*[contains(.,'${PRODUTO}')]&quot;" library="amazon_resource" sourcename="Capture o elemento com o valor do locator &quot;${LOCATOR}&quot;">
+<kw name="Capture Element Screenshot" library="SeleniumLibrary">
+<arg>locator=${LOCATOR}</arg>
+<doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
+<msg timestamp="20230113 11:20:55.211" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-element-screenshot-7.png"&gt;&lt;img src="selenium-element-screenshot-7.png" width="400px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230113 11:20:55.009" endtime="20230113 11:20:55.211"/>
+</kw>
+<status status="PASS" starttime="20230113 11:20:55.008" endtime="20230113 11:20:55.211"/>
+</kw>
+<if>
+<branch type="IF" condition="${j} == 2">
+<kw name="Exit For Loop" library="BuiltIn">
+<doc>Stops executing the enclosing FOR loop.</doc>
+<msg timestamp="20230113 11:20:55.212" level="INFO">Exiting for loop altogether.</msg>
+<status status="PASS" starttime="20230113 11:20:55.212" endtime="20230113 11:20:55.212"/>
+</kw>
+<status status="PASS" starttime="20230113 11:20:55.211" endtime="20230113 11:20:55.212"/>
+</branch>
+<branch type="ELSE">
+<kw name="Evaluate" library="BuiltIn">
+<var>${j}</var>
+<arg>${j}+1</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20230113 11:20:55.213" endtime="20230113 11:20:55.213"/>
+</kw>
+<status status="NOT RUN" starttime="20230113 11:20:55.213" endtime="20230113 11:20:55.213"/>
+</branch>
+<status status="PASS" starttime="20230113 11:20:55.211" endtime="20230113 11:20:55.213"/>
+</if>
+<status status="PASS" starttime="20230113 11:20:54.943" endtime="20230113 11:20:55.213"/>
+</iter>
+<status status="PASS" starttime="20230113 11:20:54.698" endtime="20230113 11:20:55.214"/>
+</for>
+<status status="PASS" starttime="20230113 11:20:52.583" endtime="20230113 11:20:55.214"/>
+</kw>
+<kw name="Fechar o navegador" library="amazon_resource" type="TEARDOWN">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20230113 11:20:55.417" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-18.png"&gt;&lt;img src="selenium-screenshot-18.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230113 11:20:55.215" endtime="20230113 11:20:55.417"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230113 11:20:55.418" endtime="20230113 11:20:57.799"/>
+</kw>
+<status status="PASS" starttime="20230113 11:20:55.215" endtime="20230113 11:20:57.799"/>
+</kw>
+<tag>pesquisa_produto</tag>
+<status status="PASS" starttime="20230113 11:20:45.397" endtime="20230113 11:20:57.801"/>
+</test>
+<doc>Essa suíte testa o site da Amazon.com.br</doc>
+<status status="PASS" starttime="20230113 11:20:44.944" endtime="20230113 11:20:57.806"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">pesquisa_produto</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Amazon Testes">Amazon Testes</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
