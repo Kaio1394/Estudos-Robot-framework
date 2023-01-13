@@ -23,7 +23,5 @@ Caso de Teste 01 - Acesso ao menu "Eletrônicos"
     Verificar se o título da página fica "Amazon.com.br | Tudo pra você, de A a Z."
     Preencher o campo "pesquisa" com o valor "Xbox Series S"
     Clicar no botão de pesquisa
-    # Verificar os "10" resultados da pesquisa se está listando o produto pesquisado
-    Verificar de "1" até o "10" resultados da pesquisa se está sendo listando o produto ""
-
+    Verificar de "1" até o "10" resultados da pesquisa se está sendo listando o produto "Xbox Series S"
 
