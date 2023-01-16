@@ -1,9 +1,10 @@
 *** Settings ***
+Resource   variables_resource.robot
 Library    SeleniumLibrary
 Library    XML
-Resource   variables_resource.resource 
 Library    String
 Library    ../libs_py/func.py
+Library    ../data/read_data.py
 
 *** Keywords ***
 Capture screenshot do elemento com o valor do locator "${LOCATOR}"
@@ -11,16 +12,16 @@ Capture screenshot do elemento com o valor do locator "${LOCATOR}"
 Abrir o navegador                             
     Open Browser        browser=chrome       
     Maximize Browser Window
-     
 Fechar o navegador  
     Capture Page Screenshot                            
     Close Browser    
 Acessar a home page do site "${URL}"  
     TRY
-        OUTPUT CONSOLE    text=Acessar a home page do site "${URL}"  
         Go To      url=${URl}  
-        Wait Until Element Is Visible       locator=${MENU_ELETRONICOS} 
-    EXCEPT    message
+        ${MENU_ELETRONICOS}        GET LOCATOR    AmazonPage    0    MENU_ELETRONICOS
+        Wait Until Element Is Visible       locator=${MENU_ELETRONICOS}   
+        OUTPUT CONSOLE    text=Acessar a home page do site "${URL}"  
+    EXCEPT    
         OUTPUT CONSOLE    text=Acessar a home page do site "${URL}"    color_green=False
     END
 
@@ -51,8 +52,8 @@ Preencher o campo "${CAMPO}" com o valor "${VALOR}"
         
 Clicar no botão de pesquisa
     TRY
-        OUTPUT CONSOLE    text=Clicar no botão de pesquisa
         Click Element                    locator=${SUBMIT} 
+        OUTPUT CONSOLE    text=Clicar no botão de pesquisa
     EXCEPT    message
         OUTPUT CONSOLE    text=Clicar no botão de pesquisa    color_green=False
     END
@@ -60,7 +61,7 @@ Clicar no botão de pesquisa
 Verificar de "${INIT}" até o "${END}" resultados da pesquisa se está sendo listando o produto "${PRODUTO}"
     TRY
         OUTPUT CONSOLE    text=Step Verificar de "${INIT}" até o "${END}" resultados da pesquisa se está sendo listando o produto "${PRODUTO}"
-        Wait Until Element Is Visible    locator=//div[@data-cel-widget="search_result_1"]         timeout=20s        error=Elemento não encontrado dentro de 
+        Wait Until Element Is Visible    locator=//div[@data-cel-widget="search_result_1"]         timeout=10s        error=Elemento não encontrado dentro de 
         Generate Random String
         FOR    ${i}    IN RANGE    ${INIT}    ${END}    1
             Element Should Be Visible    locator=//div[@data-cel-widget="search_result_${i}"]//*[contains(.,'${PRODUTO}')] 

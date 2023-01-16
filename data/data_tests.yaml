@@ -1,0 +1,9 @@
+
+AmazonPage:
+- MENU_ELETRONICOS: //a[contains(.,'Eletr')]
+- EDIT_PESQUISA: twotabsearchtextbox
+- SUBMIT: //input[contains(@type,'submit')]
+
+TestePage:
+- SUBMIT:
+- Locator: //input[contains(@type,'submit')]
